@@ -1,6 +1,8 @@
 vibrant
 ====
 
+[![Build Status](https://travis-ci.org/jarofghosts/vibrant.png?branch=master)](https://travis-ci.org/jarofghosts/vibrant)
+
 stream data to the browser's `vibrate()` api
 
 ## example
