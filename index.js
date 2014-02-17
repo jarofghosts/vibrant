@@ -2,8 +2,9 @@ var through = require('through')
 
 module.exports = vibrant
 
-function vibrant(_vibrate, _timeout) {
-  var timeout = _timeout || settimeout
+function vibrant(_delay, _vibrate, _timeout) {
+  var timeout = _timeout || settimeout,
+      delay = _delay || 0
 
   var running = false,
       is_done = false,
@@ -36,7 +37,13 @@ function vibrant(_vibrate, _timeout) {
 
     next = queue.shift()
     running = true
-    wait = Array.isArray(next) ? next.reduce(sum) : next
+
+    if (Array.isArray(next)) {
+      wait = next.reduce(sum)
+    } else {
+      wait = next + delay
+      next = +next
+    }
 
     vibrate(next)
 
