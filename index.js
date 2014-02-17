@@ -15,6 +15,7 @@ function vibrant(_delay, _vibrate, _timeout) {
 
   if (typeof window !== 'undefined' && window.navigator) {
     vibrate = window.navigator.vibrate || window.navigator.mozVibrate
+    vibrate = vibrate.bind(window.navigator)
   }
 
   vibrate = _vibrate || vibrate
