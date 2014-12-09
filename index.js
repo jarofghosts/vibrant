@@ -3,15 +3,15 @@ var through = require('through')
 module.exports = vibrant
 
 function vibrant(_delay, _vibrate, _timeout) {
-  var timeout = _timeout || settimeout,
-      delay = _delay || 0
+  var timeout = _timeout || settimeout
+    , delay = _delay || 0
 
-  var running = false,
-      is_done = false,
-      queue = [],
-      wait = 0,
-      vibrate,
-      next
+  var running = false
+    , is_done = false
+    , queue = []
+    , wait = 0
+    , vibrate
+    , next
 
   if (typeof window !== 'undefined' && window.navigator) {
     vibrate = window.navigator.vibrate || window.navigator.mozVibrate
@@ -31,7 +31,7 @@ function vibrant(_delay, _vibrate, _timeout) {
   }
 
   function do_next() {
-    if (!queue.length) {
+    if(!queue.length) {
       running = false
       return is_done ? done() : null
     }
@@ -39,7 +39,7 @@ function vibrant(_delay, _vibrate, _timeout) {
     next = queue.shift()
     running = true
 
-    if (Array.isArray(next)) {
+    if(Array.isArray(next)) {
       wait = next.reduce(sum)
     } else {
       wait = next + delay
@@ -52,13 +52,13 @@ function vibrant(_delay, _vibrate, _timeout) {
   }
 
   function done() {
-    if (!running && !queue.length) return vibrant_stream.queue(null)
+    if(!running && !queue.length) return vibrant_stream.queue(null)
     is_done = true
   }
 }
 
 function sum(a, b) {
-  return a + b
+  return +a + +b
 }
 
 function settimeout() {
