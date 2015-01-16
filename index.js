@@ -7,33 +7,35 @@ function vibrant(_delay, _vibrate, _timeout) {
     , delay = _delay || 0
 
   var running = false
-    , is_done = false
+    , isDone = false
     , queue = []
     , wait = 0
     , vibrate
     , next
 
-  if (typeof window !== 'undefined' && window.navigator) {
+  if(typeof window !== 'undefined' && window.navigator) {
     vibrate = window.navigator.vibrate || window.navigator.mozVibrate
     vibrate = vibrate.bind(window.navigator)
   }
 
   vibrate = _vibrate || vibrate
 
-  var vibrant_stream = through(do_vibrate, done)
+  var vibrantStream = through(doVibrate, done)
 
-  return vibrant_stream
+  return vibrantStream
 
-  function do_vibrate(data) {
+  function doVibrate(data) {
     queue.push(data)
-    vibrant_stream.queue(data)
-    if (!running) do_next()
+    vibrantStream.queue(data)
+
+    if(!running) doNext()
   }
 
-  function do_next() {
+  function doNext() {
     if(!queue.length) {
       running = false
-      return is_done ? done() : null
+
+      return isDone ? done() : null
     }
 
     next = queue.shift()
@@ -48,12 +50,12 @@ function vibrant(_delay, _vibrate, _timeout) {
 
     vibrate(next)
 
-    timeout(do_next, wait)
+    timeout(doNext, wait)
   }
 
   function done() {
-    if(!running && !queue.length) return vibrant_stream.queue(null)
-    is_done = true
+    if(!running && !queue.length) return vibrantStream.queue(null)
+    isDone = true
   }
 }
 

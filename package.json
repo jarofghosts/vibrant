@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/jarofghosts/vibrant",
   "dependencies": {
-    "through": "~2.3.4"
+    "through": "^2.3.4"
   },
   "devDependencies": {
     "tape": "^3.0.3"
