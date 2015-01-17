@@ -1,7 +1,8 @@
 vibrant
-====
+=======
 
-[![Build Status](https://travis-ci.org/jarofghosts/vibrant.png?branch=master)](https://travis-ci.org/jarofghosts/vibrant)
+[![Build Status](http://img.shields.io/travis/jarofghosts/vibrant/master.svg?style=flat)](https://travis-ci.org/jarofghosts/vibrant)
+[![npm install](http://img.shields.io/npm/dm/vibrant.svg?style=flat)](https://www.npmjs.org/package/vibrant)
 
 stream data to the browser's `vibrate()` api
 
