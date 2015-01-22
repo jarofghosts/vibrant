@@ -3,7 +3,7 @@ var through = require('through')
 module.exports = vibrant
 
 function vibrant(_delay, _vibrate, _timeout) {
-  var timeout = _timeout || settimeout
+  var timeout = _timeout || setTimeout
     , delay = _delay || 0
 
   var running = false
@@ -61,8 +61,4 @@ function vibrant(_delay, _vibrate, _timeout) {
 
 function sum(a, b) {
   return +a + +b
-}
-
-function settimeout() {
-  return setTimeout.apply(null, arguments)
 }
